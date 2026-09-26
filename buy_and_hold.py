@@ -49,5 +49,5 @@ def get_price_first_last(stock):
 def main():
     print(buy_and_hold("AAPL_2024.csv"))
 
-if __name__ == __main__:
+if __name__ == "__main__":
     main()
