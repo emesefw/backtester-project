@@ -1,6 +1,9 @@
+#create a file that concatenates every other line in a csv file to fix faulty formatting from download
+
 #import pandas as pd
 import csv
 
+#sort lines into date and price lists
 def extract_columns(file_name):
     with open(file_name, 'r') as bad_file:
         reader = csv.reader(bad_file)
@@ -17,6 +20,7 @@ def extract_columns(file_name):
                 x -= 1
         return (date, price)
 
+#rewrite csv file with date and corresponding price in the same row
 def create_new_csv(date, price, file_name):
     name = (file_name.split("."))[0]
     with open(f"{name}_ammended.csv", "w") as new_file:
