@@ -2,7 +2,6 @@ from project import (
     get_price,
     validate_dates,
     calculate_return,
-    calculate_return_1,
     get_price_first_last,
     buy_and_hold
 )
