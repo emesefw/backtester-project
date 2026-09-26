@@ -1,6 +1,7 @@
 import csv
 from datetime import date
 
+#return price of stock for a given date for foundational function
 def get_price(stock, date):
     with open(stock, "r") as file:
         reader = csv.DictReader(file)
@@ -11,6 +12,7 @@ def get_price(stock, date):
 
         return None
 
+#verify validity of buy and sell dates within a given year of market prices
 def validate_dates(date_buy, date_sell):
     try:
         b_year, b_month, b_day = date_buy.split('-')
@@ -23,27 +25,17 @@ def validate_dates(date_buy, date_sell):
     except ValueError:
         return False
 
-def calculate_return_1(stock, date_buy, date_sell):
-    if not validate_dates(date_buy, date_sell):
-        return "Invalid Dates. You cannot sell a stock before you buy it."
-
-    price_buy = get_price(stock, date_buy)
-    price_sell = get_price(stock, date_sell)
-
-    if price_buy is None or price_sell is None:
-        return "Invalid Dates. The stock market may not have been open on one of these days, please try again."
-
-    absolute_return = price_sell - price_buy
-    return round((absolute_return/price_buy)*100, 2)
-
+#creating a simple "buy and hold" function
 def buy_and_hold(stock):
     purchase_price, sell_price = get_price_first_last(stock)
     return calculate_return(purchase_price, sell_price)
 
+#calculate the absolute return given two prices
 def calculate_return(price_1, price_2):
     absolute_return = price_2 - price_1
     return round((absolute_return/price_1)*100, 2)
 
+#a more specific function that returns the price of the stock on the first and last day of market
 def get_price_first_last(stock):
     with open(stock, "r") as file:
         reader = csv.DictReader(file)
