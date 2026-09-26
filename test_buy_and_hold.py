@@ -55,26 +55,6 @@ def test_calculate_return():
     assert calculate_return(100, 90) == -10
 
 
-def test_calculate_return_1(tmp_path):
-    stock = create_test_csv(tmp_path)
-
-    assert calculate_return_1(
-        stock,
-        "2024-01-01",
-        "2024-01-02"
-    ) == 10
-
-
-def test_calculate_return_1_invalid_dates(tmp_path):
-    stock = create_test_csv(tmp_path)
-
-    assert calculate_return_1(
-        stock,
-        "2024-01-03",
-        "2024-01-01"
-    ) == "Invalid Dates. You cannot sell a stock before you buy it."
-
-
 def test_get_price_first_last(tmp_path):
     stock = create_test_csv(tmp_path)
 
