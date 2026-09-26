@@ -43,7 +43,22 @@ def get_price_first_last(stock):
         for row in reader:
             last_price = float(row['Price'])
         return (first_price, last_price)
+        
+#incorporate shares and available cash to create a buy and sell function
+def buy_action(cash, number_shares, share_price):
+    if share_price <= cash:
+        cash -= share_price
+        number_shares += 1
+    return (cash, number_shares)
 
+def sell_action(cash, number_shares, share_price):
+    if number_shares > 0:
+        cash += share_price
+        number_shares -= 1
+    return (cash, number_shares)
+
+#create a function that creates a buy signal if the price increases compared to the day before, sells if it decreases and holds if its the same
+def buy_or_sell_signal(stock):
 
 
 def main():
